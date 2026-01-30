@@ -120,7 +120,7 @@ class acp_controller
                 'ENABLED'    => (int) $row['enabled'],
                 'WEIGHT'     => (int) $row['weight'],
                 'IS_VIDEO'   => $is_video,
-                'PREVIEW_URL'=> $banner_path . '/' . $row['filename'],
+                'PREVIEW_URL'=> '../' . $banner_path . '/' . $row['filename'],
                 'U_DELETE'   => $u_action . '&amp;delete=' . $row['banner_id'],
             ]);
         }
