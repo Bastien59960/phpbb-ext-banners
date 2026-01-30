@@ -1,0 +1,81 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_ACP_BANNERS_MANAGEMENT}</h1>
+
+<form method="post" action="{U_ACTION}">
+    {S_FORM_TOKEN}
+
+    <fieldset>
+        <legend>{L_ACP_BANNERS_MANAGEMENT}</legend>
+        <dl>
+            <dt><label for="banners_enabled">{L_ACP_BANNERS_ENABLED}</label></dt>
+            <dd>
+                <label><input type="radio" name="banners_enabled" value="1"<!-- IF BANNERS_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+                <label><input type="radio" name="banners_enabled" value="0"<!-- IF not BANNERS_ENABLED --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+            </dd>
+        </dl>
+        <dl>
+            <dt><label for="banners_path">{L_ACP_BANNERS_PATH}</label><br /><span>{L_ACP_BANNERS_PATH_EXPLAIN}</span></dt>
+            <dd><input type="text" name="banners_path" value="{BANNERS_PATH}" size="40" /></dd>
+        </dl>
+        <p class="submit-buttons">
+            <input type="submit" name="submit_settings" value="{L_ACP_BANNERS_SAVE}" class="button1" />
+            <input type="submit" name="submit_scan" value="{L_ACP_BANNERS_SCAN}" class="button2" />
+        </p>
+    </fieldset>
+</form>
+
+<h2>{L_ACP_BANNERS_MANAGEMENT}</h2>
+
+<!-- IF .banners -->
+<table class="table1 zebra-table" cellspacing="1">
+    <thead>
+        <tr>
+            <th>{L_ACP_BANNERS_PREVIEW}</th>
+            <th>{L_ACP_BANNERS_FILE}</th>
+            <th>{L_ACP_BANNERS_LINK}</th>
+            <th>{L_ACP_BANNERS_TITLE_COL}</th>
+            <th>Poids</th>
+            <th>{L_ACP_BANNERS_ACTIVE}</th>
+            <th>{L_ACP_BANNERS_DELETE}</th>
+        </tr>
+    </thead>
+    <tbody>
+    <!-- BEGIN banners -->
+        <tr>
+            <td style="width:120px; text-align:center;">
+                <!-- IF banners.IS_VIDEO -->
+                    <video width="100" muted><source src="{banners.PREVIEW_URL}" type="video/mp4"></source></video>
+                <!-- ELSE -->
+                    <img src="{banners.PREVIEW_URL}" width="100" alt="" />
+                <!-- ENDIF -->
+            </td>
+            <td>{banners.FILENAME}</td>
+            <td colspan="4">
+                <form method="post" action="{U_ACTION}" style="display:inline;">
+                    {S_FORM_TOKEN}
+                    <input type="hidden" name="update_id" value="{banners.BANNER_ID}" />
+                    <input type="text" name="link_url" value="{banners.LINK_URL}" size="40" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><input type="text" name="banner_title" value="{banners.TITLE}" size="25" /></td>
+            <td><input type="number" name="weight" value="{banners.WEIGHT}" min="1" max="100" size="3" style="width:50px;" /></td>
+            <td>
+                <label><input type="radio" name="enabled" value="1"<!-- IF banners.ENABLED --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+                <label><input type="radio" name="enabled" value="0"<!-- IF not banners.ENABLED --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+                <input type="submit" name="submit_update" value="{L_ACP_BANNERS_SAVE}" class="button2" />
+                </form>
+            </td>
+            <td><a href="{banners.U_DELETE}">{L_ACP_BANNERS_DELETE}</a></td>
+        </tr>
+    <!-- END banners -->
+    </tbody>
+</table>
+<!-- ELSE -->
+<p>{L_ACP_BANNERS_NO_BANNERS}</p>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->
