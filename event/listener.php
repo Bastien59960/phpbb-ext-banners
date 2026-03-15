@@ -61,11 +61,12 @@ class listener implements EventSubscriberInterface
         $banner = $pool[array_rand($pool)];
         $ext = strtolower(pathinfo($banner['filename'], PATHINFO_EXTENSION));
 
+        // Échapper les données DB — autoescape Twig est OFF dans phpBB 3.3
         $this->template->assign_vars([
             'BANNER_ENABLED' => true,
-            'BANNER_FILE'    => $banner_path . '/' . $banner['filename'],
-            'BANNER_LINK'    => $banner['link_url'],
-            'BANNER_EXT'     => $ext,
+            'BANNER_FILE'    => htmlspecialchars(generate_board_url() . '/' . $banner_path . '/' . $banner['filename'], ENT_QUOTES, 'UTF-8'),
+            'BANNER_LINK'    => htmlspecialchars($banner['link_url'], ENT_QUOTES, 'UTF-8'),
+            'BANNER_EXT'     => htmlspecialchars($ext, ENT_QUOTES, 'UTF-8'),
         ]);
     }
 }
