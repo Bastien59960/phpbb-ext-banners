@@ -166,6 +166,10 @@ Exemple : si la bannière A a un poids de 3 et la bannière B un poids de 1, A a
 - phpBB >= 3.3.0
 - MariaDB / MySQL
 
+## Inter-extension dependencies
+
+`banners` is **fully standalone**. It has no dependency on any other extension in this project, and no other extension reads its tables or services directly.
+
 ## Licence
 
 GPL-2.0-only
