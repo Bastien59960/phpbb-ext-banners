@@ -1,0 +1,33 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code (config locale, mémoire de session, hooks)
+.claude/
+
+# Variables d'environnement et secrets
+.env
+.env.*
+*.token
+*.secret
+
+# Logs
+*.log
+
+# Dépendances
+vendor/
+node_modules/
+
+# Archives
+*.bak
+*.zip
+*.tar.gz
+*.rar
